@@ -1,4 +1,3 @@
-import { toGeoJsonPoint } from "@/utils/geo";
 import { Store, Commit } from "vuex";
 
 interface IState {
@@ -37,39 +36,6 @@ export const layerModule = {
       state.links = links;
     },
   },
-  actions: {
-    showLayer({ state, commit, rootState }: IAction, { id }: { id: String }) {
-      const clickedLayer = state.links.find((item: ILink) => item.id === id);
-      if (!clickedLayer) return;
-      const clickedId = clickedLayer.textContent;
-      const wasActive = clickedLayer.active;
-      const links = state.links.map((item: ILink) =>
-        item.id === id ? { ...item, active: !wasActive } : item
-      );
-      //   commit("setLinks", links);
-      rootState.map.map.setLayoutProperty(
-        clickedId,
-        "visibility",
-        wasActive ? "none" : "visible"
-      );
-    },
-    addMarker(
-      { state, commit, rootState }: IAction,
-      { layer, title }: { layer: String; title: String }
-    ) {
-      const { map } = rootState.map;
-      if (!map) return;
-      const source = map.getSource(layer);
-      if (!source) return;
-      const { lat, lng } = map.getCenter();
-      source.setData({
-        type: "FeatureCollection",
-        features: [
-          ...source._data.features,
-          toGeoJsonPoint([lng, lat], title, "custom-marker"),
-        ],
-      });
-    },
-  },
+  actions: {},
   namespaced: true,
 };

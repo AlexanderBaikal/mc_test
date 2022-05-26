@@ -16,6 +16,7 @@
 <script>
   import MyButton from "@/components/UI/MyButton.vue";
   import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+  import { addMarker } from "@/utils/layers";
   export default {
     setup(props) {},
     components: { MyButton },
@@ -29,18 +30,25 @@
     methods: {
       ...mapActions({
         showLayer: "layer/showLayer",
-        addMarker: "layer/addMarker",
       }),
       ...mapMutations({
         changeVisibility: "layer/changeVisibility",
       }),
       onAddMarker(layer, title) {
-        this.addMarker({ layer, title });
+        addMarker(this.map, layer, title);
       },
       onShowLayer(e, id) {
         e.preventDefault();
         e.stopPropagation();
+        const clickedLayer = this.links.find((item) => item.id === id);
+        const clickedId = clickedLayer.textContent;
+        const wasActive = clickedLayer.active;
         this.changeVisibility(id);
+        this.map.setLayoutProperty(
+          clickedId,
+          "visibility",
+          wasActive ? "none" : "visible"
+        );
       },
     },
     watch: {},

@@ -1,3 +1,5 @@
+import { toGeoJsonPoint } from "./geo";
+
 interface ILink {
   id: string;
   href: string;
@@ -28,4 +30,18 @@ export const initLinks = (
     links.push(link);
   }
   return links;
+};
+
+export const addMarker = (map: any, layer: String, title: String) => {
+  if (!map) return;
+  const source = map.getSource(layer);
+  if (!source) return;
+  const { lat, lng } = map.getCenter();
+  source.setData({
+    type: "FeatureCollection",
+    features: [
+      ...source._data.features,
+      toGeoJsonPoint([lng, lat], title, "custom-marker"),
+    ],
+  });
 };

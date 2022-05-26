@@ -18,7 +18,7 @@ export const mapModule = {
   mutations: {
     setMap(state: IState, map: Object) {
       // only once
-      if (!map) state.map = map;
+      if (!state.map) state.map = map;
     },
   },
   actions: {
