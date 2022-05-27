@@ -1,13 +1,14 @@
 interface IGeo {
   type: String;
   geometry: { type: String; coordinates: Array<Number> };
-  properties: { title: String; image: String };
+  properties: { title: String; image: String; iconSize: number };
 }
 
 export const toGeoJsonPoint = (
   latlng: Array<Number>,
   title: String,
-  image: String
+  image: String,
+  iconSize = 0.5
 ): IGeo => {
   return {
     type: "Feature",
@@ -18,6 +19,7 @@ export const toGeoJsonPoint = (
     properties: {
       title,
       image,
+      iconSize,
     },
   };
 };

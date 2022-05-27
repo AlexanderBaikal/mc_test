@@ -32,7 +32,13 @@ export const initLinks = (
   return links;
 };
 
-export const addMarker = (map: any, layer: String, title: String) => {
+export const addMarker = (
+  map: any,
+  layer: String,
+  title: String,
+  icon = "fir-marker",
+  iconSize?: number
+) => {
   if (!map) return;
   const source = map.getSource(layer);
   if (!source) return;
@@ -41,7 +47,18 @@ export const addMarker = (map: any, layer: String, title: String) => {
     type: "FeatureCollection",
     features: [
       ...source._data.features,
-      toGeoJsonPoint([lng, lat], title, "custom-marker"),
+      toGeoJsonPoint([lng, lat], title, icon, iconSize),
     ],
+  });
+};
+
+export const addTextLabel = (map: any, layer: String, title: String) => {
+  if (!map) return;
+  const source = map.getSource(layer);
+  if (!source) return;
+  const { lat, lng } = map.getCenter();
+  source.setData({
+    type: "FeatureCollection",
+    features: [...source._data.features, toGeoJsonPoint([lng, lat], title, "")],
   });
 };

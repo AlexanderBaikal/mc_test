@@ -28,7 +28,6 @@
     color: #404040;
     display: block;
     margin: 0;
-    padding: 0;
     padding: 10px;
     text-decoration: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);

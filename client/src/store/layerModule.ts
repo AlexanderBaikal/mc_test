@@ -1,4 +1,4 @@
-import { Store, Commit } from "vuex";
+import { Commit } from "vuex";
 
 interface IState {
   links: Array<ILink>;
