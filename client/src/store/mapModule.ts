@@ -11,6 +11,7 @@ export const mapModule = {
     setMap(state: IState, map: Object) {
       // only once
       if (!state.map) state.map = map;
+      console.log("setMap");
     },
   },
   actions: {},

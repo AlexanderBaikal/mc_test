@@ -10,9 +10,12 @@ export const initialLayers = [
       },
       {
         latlng: [-79.51768189070217, 8.999435903081396],
-        title: "Fastfood",
-        image: "fast-food-15",
-        iconSize: 2,
+        // title: "Fastfood",
+        // image: "fast-food-15",
+        // iconSize: 2,
+        title: "Panama 3",
+        image: "fir-marker",
+        iconSize: 0.5,
       },
       {
         latlng: [-79.51768189070217, 8.979435903081396],
