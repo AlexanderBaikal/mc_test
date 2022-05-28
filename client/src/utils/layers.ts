@@ -71,7 +71,7 @@ export const deleteMarker = (map: any, layer: String, id: number) => {
     type: "FeatureCollection",
     features: [
       ...source._data.features.filter(
-        (item: any, itemId: number) => itemId !== id
+        (item: any, itemId: number) => itemId != id
       ),
     ],
   });

@@ -3,6 +3,10 @@ import { toGeoJsonPoint } from "./geo";
 import mapboxgl from "mapbox-gl";
 import { deleteMarker } from "./layers";
 
+export const mapData = {
+  quakeId: null,
+};
+
 export const loadImage = (map: any, imageUrl: string, name: string) => {
   return new Promise((resolve, reject) => {
     map.loadImage(imageUrl, (error: any, image: any) => {
@@ -60,31 +64,27 @@ export const addLayer = (
       ],
     },
   });
-  let quakeID: any = null;
   map.on("mousemove", sourceName, (event: any) => {
     if (!interactive) return;
     map.getCanvas().style.cursor = "pointer";
     // Check whether features exist
-
     if (event.features.length === 0) return;
-
     // If quakeID for the hovered feature is not null,
     // use removeFeatureState to reset to the default behavior
-    if (quakeID) {
+    if (mapData.quakeId !== null) {
       map.removeFeatureState({
         source: sourceName,
-        id: quakeID,
+        id: mapData.quakeId,
       });
     }
 
-    quakeID = event.features[0].id;
-
-    // When the mouse moves over the earthquakes-viz layer, update the
+    mapData.quakeId = event.features[0].id;
+    // When the mouse moves over the layer, update the
     // feature state for the feature under the mouse
     map.setFeatureState(
       {
         source: sourceName,
-        id: quakeID,
+        id: mapData.quakeId,
       },
       {
         hover: true,
@@ -93,30 +93,36 @@ export const addLayer = (
   });
   map.on("mouseleave", sourceName, () => {
     if (!interactive) return;
-    if (quakeID) {
+    if (mapData.quakeId !== null) {
       map.setFeatureState(
         {
           source: sourceName,
-          id: quakeID,
+          id: mapData.quakeId,
         },
         {
           hover: false,
         }
       );
     }
-    quakeID = null;
-    // Reset the cursor style
+    mapData.quakeId = null;
     map.getCanvas().style.cursor = "";
   });
   map.on("click", sourceName, (event: any) => {
     if (!interactive) return;
     if (event.features.length === 0) return;
-    quakeID = event.features[0].id;
-    deleteMarker(map, sourceName, quakeID);
+    mapData.quakeId = event.features[0].id;
     const coords = event.features[0].geometry.coordinates;
+    const button = document.createElement("div");
+    button.style.padding = "10px";
+    button.innerHTML = `<button id="${mapData.quakeId}" class="my-button">Delete marker</button>`;
+    button.addEventListener("click", (e) => {
+      //@ts-ignore
+      deleteMarker(map, sourceName, e.target.id);
+      popup.remove();
+    });
     const popup = new mapboxgl.Popup({ closeOnClick: false })
       .setLngLat(coords)
-      .setHTML("<h1>Hello World!</h1>")
+      .setDOMContent(button)
       .addTo(map);
   });
 };

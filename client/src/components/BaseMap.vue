@@ -14,7 +14,7 @@
   import moaiMarker from "@/assets/moai.png";
 
   export default {
-    name: "BaseMap",
+    name: "base-map",
     data() {
       return {};
     },

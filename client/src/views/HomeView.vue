@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <BaseMap />
-    <MapController />
+    <base-map />
+    <map-controller />
   </div>
 </template>
 

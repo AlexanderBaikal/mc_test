@@ -1,17 +1,18 @@
 <template>
-  <div className="add-form">
+  <my-control>
     <div className="add-text-label">{{ textLabel }}</div>
     <slot></slot>
     <my-button @click="onSubmit" :buttonId="'apply'">{{
       submitButtonText
     }}</my-button>
-  </div>
+  </my-control>
 </template>
 
 <script>
   import MyButton from "./MyButton.vue";
+  import MyControl from "./MyControl.vue";
   export default {
-    components: { MyButton },
+    components: { MyButton, MyControl },
     name: "add-form",
     props: {
       textLabel: { type: String, required: true },
@@ -24,16 +25,6 @@
   };
 </script>
 <style lang="css">
-  .add-form {
-    background: #fff;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    border-radius: 3px;
-    width: 120px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    font-family: "Open Sans", sans-serif;
-    padding: 10px;
-  }
   .add-text-label {
     font-size: 14px;
   }

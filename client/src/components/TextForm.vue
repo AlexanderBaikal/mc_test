@@ -4,10 +4,11 @@
     :submitButtonText="'Apply'"
     :textLabel="'Enter text'"
   >
-    <input className="add-form-input" type="text" v-model="textInput" />
+    <my-input v-model="textInput" />
   </add-form>
 </template>
 <script>
+  import MyInput from "@/components/UI/MyInput";
   import MyButton from "@/components/UI/MyButton";
   import AddForm from "@/components/UI/AddForm";
   import { addTextLabel } from "@/utils/layers";
@@ -16,6 +17,7 @@
   export default {
     name: "text-form",
     components: {
+      MyInput,
       MyButton,
       AddForm,
     },
@@ -45,11 +47,4 @@
     },
   };
 </script>
-<style>
-  .add-form-input {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 10px 0;
-    padding: 10px;
-  }
-</style>
+<style></style>

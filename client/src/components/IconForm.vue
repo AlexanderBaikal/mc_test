@@ -4,7 +4,7 @@
     :submitButtonText="'Apply'"
     :textLabel="'Enter text'"
   >
-    <input className="add-form-input" type="text" v-model="textInput" />
+    <my-input v-model="textInput" />
     <div class="add-icon-label">Choose Icon</div>
     <img
       v-for="iconImage in iconImages"
@@ -18,6 +18,7 @@
 </template>
 <script>
   import MyButton from "@/components/UI/MyButton";
+  import MyInput from "@/components/UI/MyInput";
   import AddForm from "@/components/UI/AddForm";
   import { addMarker, addTextLabel } from "@/utils/layers";
   import { mapState } from "vuex";
@@ -31,6 +32,7 @@
     components: {
       MyButton,
       AddForm,
+      MyInput,
     },
     props: {
       addTextActive: {
@@ -80,11 +82,6 @@
   };
 </script>
 <style>
-  .add-form-input {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 10px 0;
-  }
   .add-icon-label {
     padding: 10px 0;
     font-size: 14px;
