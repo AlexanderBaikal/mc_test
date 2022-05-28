@@ -28,10 +28,10 @@
     },
     methods: {
       openMarkerSettings() {
-        this.$emit("update:addMarkerActive", true);
+        this.$emit("update:addMarkerActive", !this.addMarkerActive);
       },
       openTextSettings() {
-        this.$emit("update:addTextActive", true);
+        this.$emit("update:addTextActive", !this.addTextActive);
       },
     },
   };
@@ -39,7 +39,8 @@
 <style>
   #addButtons {
     background: #fff;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
     border-radius: 3px;
     width: 120px;
     border: 1px solid rgba(0, 0, 0, 0.4);

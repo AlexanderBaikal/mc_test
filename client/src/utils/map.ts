@@ -1,9 +1,15 @@
 import { toGeoJsonPoint } from "./geo";
+// @ts-ignore
+import mapboxgl from "mapbox-gl";
+import { deleteMarker } from "./layers";
 
 export const loadImage = (map: any, imageUrl: string, name: string) => {
-  map.loadImage(imageUrl, (error: any, image: any) => {
-    if (error) throw error;
-    map.addImage(name, image);
+  return new Promise((resolve, reject) => {
+    map.loadImage(imageUrl, (error: any, image: any) => {
+      if (error) throw error;
+      map.addImage(name, image);
+      resolve(null);
+    });
   });
 };
 
@@ -49,8 +55,8 @@ export const addLayer = (
       "icon-opacity": [
         "case",
         ["boolean", ["feature-state", "hover"], false],
+        0.5,
         1,
-        0.7,
       ],
     },
   });
@@ -59,6 +65,7 @@ export const addLayer = (
     if (!interactive) return;
     map.getCanvas().style.cursor = "pointer";
     // Check whether features exist
+
     if (event.features.length === 0) return;
 
     // If quakeID for the hovered feature is not null,
@@ -105,14 +112,11 @@ export const addLayer = (
     if (!interactive) return;
     if (event.features.length === 0) return;
     quakeID = event.features[0].id;
-    const source = map.getSource(sourceName);
-    source.setData({
-      type: "FeatureCollection",
-      features: [
-        ...source._data.features.filter(
-          (item: any, id: number) => id !== quakeID
-        ),
-      ],
-    });
+    deleteMarker(map, sourceName, quakeID);
+    const coords = event.features[0].geometry.coordinates;
+    const popup = new mapboxgl.Popup({ closeOnClick: false })
+      .setLngLat(coords)
+      .setHTML("<h1>Hello World!</h1>")
+      .addTo(map);
   });
 };

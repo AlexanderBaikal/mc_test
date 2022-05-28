@@ -5,7 +5,7 @@
 <script>
   import mapboxgl from "mapbox-gl";
   import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
-  import { initialLayers } from "@/consts/initialLayers";
+  import { extraLayers, initialLayers } from "@/consts/initialLayers";
   import { loadImage, addLayer } from "@/utils/map";
   import { initLinks } from "@/utils/layers";
   import flagMarker from "@/assets/flag.png";
@@ -28,23 +28,30 @@
         preserveDrawingBuffer: true,
       });
       this.setMap(map);
-      map.on("load", () => {
-        loadImage(map, firMarker, "fir-marker");
-        loadImage(map, flagMarker, "flag-marker");
-        loadImage(map, mountainMarker, "mountain-marker");
-        loadImage(map, moaiMarker, "moai-marker");
+      map.on("load", async () => {
+        const images = [
+          { name: "fir-marker", data: firMarker },
+          { name: "flag-marker", data: flagMarker },
+          { name: "mountain-marker", data: mountainMarker },
+          { name: "moai-marker", data: moaiMarker },
+        ];
+        const imageLoading = Promise.all(
+          images.map((img) => loadImage(map, img.data, img.name))
+        );
+        await imageLoading;
         initialLayers.forEach((element) => {
           addLayer(map, element.layerName, element.data, true);
         });
-        const links = initLinks(
-          map,
-          initialLayers.map((item) => item.layerName)
-        );
+        const links = initLinks(map, [
+          ...initialLayers.map((item) => item.layerName),
+          ...extraLayers,
+        ]);
         this.setLinks(links);
       });
 
       map.on("idle", () => {
         // console.log(map.listImages());
+        // console.log(map.getStyle().layers);
       });
     },
     methods: {

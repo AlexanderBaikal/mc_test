@@ -8,12 +8,14 @@
       :active="link.active"
       >{{ link.textContent }}</my-button
     >
+    <!-- <my-button v-for="layer in extraLayers" :key="layer"       :buttonId="layer"
+      :active="link.active">{{layer}}</my-button> -->
   </div>
 </template>
 <script>
   import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
   import MyButton from "@/components/UI/MyButton";
-
+  import { extraLayers, initialLayers } from "@/consts/initialLayers";
   export default {
     name: "layer-controller",
     props: {},
@@ -54,5 +56,7 @@
     border: 1px solid rgba(0, 0, 0, 0.4);
     font-family: "Open Sans", sans-serif;
     padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px;
   }
 </style>

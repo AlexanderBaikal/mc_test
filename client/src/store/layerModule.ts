@@ -25,18 +25,15 @@ export const layerModule = {
   mutations: {
     setLinks(state: IState, links: Array<ILink>) {
       state.links = links;
-      console.log("setlinks");
     },
     addLink(state: IState, link: ILink) {
       state.links = [...state.links, link];
-      console.log("addlinks");
     },
     changeVisibility(state: IState, id: String) {
       const links = state.links.map((item: ILink) =>
         item.id === id ? { ...item, active: !item.active } : item
       );
       state.links = links;
-      console.log("changeVisibility");
     },
   },
   actions: {},

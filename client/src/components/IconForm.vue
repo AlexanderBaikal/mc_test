@@ -20,7 +20,7 @@
   import MyButton from "@/components/UI/MyButton";
   import AddForm from "@/components/UI/AddForm";
   import { addMarker, addTextLabel } from "@/utils/layers";
-  import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+  import { mapState } from "vuex";
   import flagMarker from "@/assets/flag.png";
   import firMarker from "@/assets/fir.png";
   import mountainMarker from "@/assets/mountain.png";

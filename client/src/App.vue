@@ -21,15 +21,22 @@
 
   nav {
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: flex-end;
   }
 
   nav a {
     font-weight: bold;
     color: #2c3e50;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    border: rgba(0, 0, 0, 0.4) 1px solid;
   }
 
   nav a.router-link-exact-active {
-    color: #42b983;
+    color: #3887be;
   }
 </style>

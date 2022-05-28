@@ -37,7 +37,7 @@
     },
     methods: {
       onAddText() {
-        this.$emit("update:addTextActive", false);
+        this.$emit("update:addTextActive", !this.addTextActive);
         const layer = "points";
         addTextLabel(this.map, layer, this.textInput);
         this.textInput = "";
@@ -50,5 +50,6 @@
     width: 100%;
     box-sizing: border-box;
     margin: 10px 0;
+    padding: 10px;
   }
 </style>

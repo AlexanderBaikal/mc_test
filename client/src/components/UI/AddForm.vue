@@ -26,7 +26,8 @@
 <style lang="css">
   .add-form {
     background: #fff;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
     border-radius: 3px;
     width: 120px;
     border: 1px solid rgba(0, 0, 0, 0.4);

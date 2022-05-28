@@ -62,3 +62,17 @@ export const addTextLabel = (map: any, layer: String, title: String) => {
     features: [...source._data.features, toGeoJsonPoint([lng, lat], title, "")],
   });
 };
+
+export const deleteMarker = (map: any, layer: String, id: number) => {
+  if (!map) return;
+  const source = map.getSource(layer);
+  if (!source) return;
+  source.setData({
+    type: "FeatureCollection",
+    features: [
+      ...source._data.features.filter(
+        (item: any, itemId: number) => itemId !== id
+      ),
+    ],
+  });
+};
