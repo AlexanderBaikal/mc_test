@@ -9,12 +9,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --env=jsdom --verbose",
     "lint": "vue-cli-service lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "index.js",
   "dependencies": {
+    "@vue/compiler-sfc": "^3.2.36",
     "core-js": "^3.8.3",
     "dotenv": "^16.0.1",
     "fs": "0.0.1-security",
@@ -27,6 +28,7 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@testing-library/vue": "^5.8.3",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

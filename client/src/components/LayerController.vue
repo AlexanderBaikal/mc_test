@@ -54,7 +54,6 @@
     border-radius: 3px;
     width: 120px;
     border: 1px solid rgba(0, 0, 0, 0.4);
-    font-family: "Open Sans", sans-serif;
     padding: 10px;
     margin-bottom: 20px;
     margin-left: 20px;

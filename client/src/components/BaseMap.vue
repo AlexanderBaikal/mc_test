@@ -12,6 +12,10 @@
   import firMarker from "@/assets/fir.png";
   import mountainMarker from "@/assets/mountain.png";
   import moaiMarker from "@/assets/moai.png";
+  import cameraMarker from "@/assets/camera.png";
+  import postMarker from "@/assets/post.png";
+  import houseMarker from "@/assets/house.png";
+  import moneyMarker from "@/assets/money.png";
 
   export default {
     name: "base-map",
@@ -34,6 +38,10 @@
           { name: "flag-marker", data: flagMarker },
           { name: "mountain-marker", data: mountainMarker },
           { name: "moai-marker", data: moaiMarker },
+          { name: "camera-marker", data: cameraMarker },
+          { name: "post-marker", data: postMarker },
+          { name: "house-marker", data: houseMarker },
+          { name: "money-marker", data: moneyMarker },
         ];
         const imageLoading = Promise.all(
           images.map((img) => loadImage(map, img.data, img.name))

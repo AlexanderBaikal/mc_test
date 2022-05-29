@@ -10,8 +10,12 @@
     margin: 0;
   }
 
+  input {
+    font-family: Poppins;
+  }
+
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -37,6 +41,6 @@
   }
 
   nav a.router-link-exact-active {
-    color: #3887be;
+    color: #4caf50;
   }
 </style>

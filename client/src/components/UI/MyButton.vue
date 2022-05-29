@@ -52,12 +52,12 @@
   }
 
   .my-button.active {
-    background-color: #3887be;
+    background-color: #4caf50;
     color: #ffffff;
   }
 
   .my-button.active:hover {
-    background: #3074a4;
+    background: #388e3c;
   }
   .my-button.border {
     border: 1px solid rgba(0, 0, 0, 0.25);

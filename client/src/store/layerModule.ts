@@ -1,6 +1,6 @@
 import { Commit } from "vuex";
 
-interface IState {
+export interface ILayerState {
   links: Array<ILink>;
 }
 
@@ -12,24 +12,24 @@ interface ILink {
 }
 
 interface IAction {
-  state: IState;
+  state: ILayerState;
   commit: Commit;
   rootState: any;
 }
 
 export const layerModule = {
-  state: (): IState => ({
+  state: (): ILayerState => ({
     links: [],
   }),
   getters: {},
   mutations: {
-    setLinks(state: IState, links: Array<ILink>) {
+    setLinks(state: ILayerState, links: Array<ILink>) {
       state.links = links;
     },
-    addLink(state: IState, link: ILink) {
+    addLink(state: ILayerState, link: ILink) {
       state.links = [...state.links, link];
     },
-    changeVisibility(state: IState, id: String) {
+    changeVisibility(state: ILayerState, id: String) {
       const links = state.links.map((item: ILink) =>
         item.id === id ? { ...item, active: !item.active } : item
       );

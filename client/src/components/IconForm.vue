@@ -1,8 +1,8 @@
 <template>
   <add-form
     :onSubmit="onAddMarker"
-    :submitButtonText="'Apply'"
-    :textLabel="'Enter text'"
+    :submitButtonText="`Apply`"
+    :textLabel="`Enter text`"
   >
     <my-input v-model="textInput" />
     <div class="add-icon-label">Choose Icon</div>
@@ -26,6 +26,10 @@
   import firMarker from "@/assets/fir.png";
   import mountainMarker from "@/assets/mountain.png";
   import moaiMarker from "@/assets/moai.png";
+  import cameraMarker from "@/assets/camera.png";
+  import postMarker from "@/assets/post.png";
+  import houseMarker from "@/assets/house.png";
+  import moneyMarker from "@/assets/money.png";
 
   export default {
     name: "icon-form",
@@ -49,10 +53,14 @@
         textInput: "",
         activeIcon: -1,
         iconImages: [
-          { name: "flag-marker", data: flagMarker },
           { name: "fir-marker", data: firMarker },
+          { name: "flag-marker", data: flagMarker },
           { name: "mountain-marker", data: mountainMarker },
           { name: "moai-marker", data: moaiMarker },
+          { name: "camera-marker", data: cameraMarker },
+          { name: "post-marker", data: postMarker },
+          { name: "house-marker", data: houseMarker },
+          { name: "money-marker", data: moneyMarker },
         ],
       };
     },
@@ -63,9 +71,9 @@
     },
     methods: {
       onAddText() {
-        this.$emit("update:addTextActive", false);
         const layer = "points";
         addTextLabel(this.map, layer, this.textInput);
+        this.$emit("update:addTextActive", false);
         this.textInput = "";
       },
       setActiveIcon(iconImage) {
@@ -74,8 +82,8 @@
       },
       onAddMarker() {
         const layer = "points";
-        this.$emit("update:addMarkerActive", false);
         addMarker(this.map, layer, this.textInput, this.activeIcon);
+        this.$emit("update:addMarkerActive", false);
         this.textInput = "";
       },
     },

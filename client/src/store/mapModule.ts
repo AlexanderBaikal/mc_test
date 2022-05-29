@@ -1,14 +1,14 @@
-interface IState {
+export interface IMapState {
   map: any;
 }
 
 export const mapModule = {
-  state: (): IState => ({
+  state: (): IMapState => ({
     map: null,
   }),
   getters: {},
   mutations: {
-    setMap(state: IState, map: Object) {
+    setMap(state: IMapState, map: Object) {
       // only once
       if (!state.map) state.map = map;
     },
